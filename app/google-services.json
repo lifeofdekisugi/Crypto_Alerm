@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "183792484742",
+    "project_id": "crypto-alarm-81561",
+    "storage_bucket": "crypto-alarm-81561.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183792484742:android:d4e5f6261004b499742c07",
+        "android_client_info": {
+          "package_name": "com.shahir.cryptoalerm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "183792484742-chpq7v65c17ld1khisaanbcdsjqp30fu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5f0H59HfU_GSAeAk8eNp7FEYerZXgC-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "183792484742-chpq7v65c17ld1khisaanbcdsjqp30fu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
