@@ -18,14 +18,16 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/swipeToRefresh">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tokenPriseRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingRight="10dp"
-            android:paddingLeft="10dp"/>
+            android:paddingLeft="10dp"
+            android:nestedScrollingEnabled="false"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/tokenPriseRecyclerItem"
     android:layout_margin="5dp"
+    android:padding="5dp"
     android:background="@color/black"
     android:orientation="vertical">
 
@@ -13,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp"
+        android:padding="8dp"
         android:weightSum="3">
 
         <TextView
@@ -42,7 +43,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"/>
+        android:layout_height="2dp"
+        android:background="@color/white"/>
 
 
 
