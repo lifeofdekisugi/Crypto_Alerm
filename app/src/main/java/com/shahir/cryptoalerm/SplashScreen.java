@@ -7,9 +7,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.shahir.cryptoalerm.Auth.LoginActivity;
 
 public class SplashScreen extends AppCompatActivity {
+
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,13 +25,30 @@ public class SplashScreen extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.splash_screen);
 
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        gsc = GoogleSignIn.getClient(SplashScreen.this, gso);
+
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+
+
         int SPLASH_SCREEN = 3500;
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashScreen.this, LoginActivity.class));
-                finish();
+
+                if (account != null){
+                    startActivity(new Intent(SplashScreen.this, HomeActivity.class));
+                    finish();
+                }else {
+                    startActivity(new Intent(SplashScreen.this, LoginActivity.class));
+                    finish();
+                }
+
+
 //                if (CheckNetwork.isInternetAvailable(getApplicationContext())){
 //                    startActivity(new Intent(SplashScreen.this, LoginActivity.class));
 //                    finish();

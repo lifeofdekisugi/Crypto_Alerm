@@ -5,13 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.shahir.cryptoalerm.MainFragments.FragmentAddNewAlerm;
-import com.shahir.cryptoalerm.MainFragments.FragmentDashboard;
+import com.shahir.cryptoalerm.MainFragments.Dashboard.FragmentDashboard;
 import com.shahir.cryptoalerm.MainFragments.FragmentPreviousAlerms;
 import com.shahir.cryptoalerm.MainFragments.FragmentProfile;
 

@@ -13,6 +13,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.shahir.cryptoalerm.HomeActivity;
@@ -21,6 +22,7 @@ import com.shahir.cryptoalerm.R;
 public class LoginActivity extends AppCompatActivity {
 
     Button btnLoginWithGoogle;
+    SignInButton signInButton;
 
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
@@ -30,7 +32,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        btnLoginWithGoogle = findViewById(R.id.btnLoginWithGoogle);
+        signInButton = findViewById(R.id.signInButton);
+        signInButton.setSize(signInButton.SIZE_STANDARD);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -38,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
         gsc = GoogleSignIn.getClient(LoginActivity.this, gso);
 
-        btnLoginWithGoogle.setOnClickListener(new View.OnClickListener() {
+        signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 loginRequest();
@@ -77,3 +80,24 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
+/*
+    <Button
+        android:id="@+id/btnLoginWithGoogle"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:elevation="10dp"
+        android:backgroundTint="@color/white"
+        android:text="Login With Google"
+        android:textSize="18sp"
+        android:drawableLeft="@drawable/googleicon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.83" />
+ */
