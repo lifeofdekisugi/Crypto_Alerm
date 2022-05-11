@@ -84,25 +84,21 @@ public class FragmentDashboard extends Fragment {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-
-//                if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
-//                    isScrolling = true;
-//                }
+                   if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
+                    isScrolling = true;
+                }
             }
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-
-
-
                 currentItems = manager.getChildCount();
                 totalItems = manager.getItemCount();
                 scrolledOutItems = manager.findFirstVisibleItemPosition();
 
-                if (currentItems + totalItems == totalItems){
-                    Toast.makeText(mContext, "Completed", Toast.LENGTH_SHORT).show();
-
+                if (currentItems + scrolledOutItems == totalItems){
+                    isScrolling = false;
+                    loadMoreData();
                 }
             }
         });
@@ -116,9 +112,57 @@ public class FragmentDashboard extends Fragment {
             public void run() {
                 pageNumber = pageNumber + 1;
 
-                Log.d(TAG, "run: @@@@@@@@@@@@              Page Number : " + pageNumber);
+                RequestQueue queue = Volley.newRequestQueue(mContext);
+                String url = "https://data.messari.io/api/v1/assets?fields=id,slug,symbol,metrics/market_data/price_usd&&page=" + pageNumber;
+
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new com.android.volley.Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        Log.d(TAG, "onResponse: @@@@@@@@@@          Full Response : "  + response);
+
+                        try {
+                            //JSONObject jsonObject = response.getJSONObject("data");
+
+                            JSONArray jsonArray = response.getJSONArray("data");
+
+                            for (int i = 0; i<jsonArray.length(); i++){
+
+                                JSONObject mainObject = jsonArray.getJSONObject(i);
+
+                                JSONObject metrics = mainObject.getJSONObject("metrics");
+
+                                JSONObject market_data = metrics.getJSONObject("market_data");
+
+
+                                TokenPriseItem data = new TokenPriseItem(
+                                        mainObject.getString("symbol"),
+                                        market_data.getString("price_usd")
+                                );
+
+                                tokenPriseItems.add(data);
+
+                                Log.d(TAG, "onResponse: @@@@@@@@@@             Token name : " + mainObject.getString("symbol") + " || Token Price : " +
+                                        market_data.getString("price_usd"));
+                            }
+
+                            tokenPriceAdapter.notifyDataSetChanged();
+
+                        } catch (JSONException e) {
+                            Log.d(TAG, "onResponse: @@@@@@@@@@            Object Error : " + e);
+                        }
+
+                    }
+                }, new com.android.volley.Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "onErrorResponse: @@@@@@@@              Volley Error : " + error);
+                    }
+                });
+
+                queue.add(jsonObjectRequest);
             }
-        }, 2000);
+        }, 3500);
     }
 
     public void getCoinData(){
