@@ -1,14 +1,19 @@
 package com.shahir.cryptoalerm.MainFragments.Dashboard;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.shahir.cryptoalerm.MainFragments.Dashboard.TokenDetails.FragmentTokenDetails;
+import com.shahir.cryptoalerm.R;
 import com.shahir.cryptoalerm.databinding.TokenPriceRecyclerItemBinding;
 
 import java.util.List;
@@ -44,11 +49,22 @@ public class TokenPriseAdapted extends RecyclerView.Adapter<TokenPriseAdapted.Vi
         holder.binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Working on Details Fragment", Toast.LENGTH_SHORT).show();
+
+                Fragment fragment = new FragmentTokenDetails();
+                Bundle arguments = new Bundle();
+                arguments.putString("tokenSymbol",data.getSymbol());
+                fragment.setArguments(arguments);
+
+                FragmentTransaction fragmentTransaction = parent.requireActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frameContainer, fragment).commit();
+                fragmentTransaction.addToBackStack(null);
+
+                //Toast.makeText(context, "Working on Details Fragment", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
+
 
     @Override
     public int getItemCount() {

@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:iconifiedByDefault="false"
-
         android:queryHint="BTC"/>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -30,6 +29,13 @@
             android:nestedScrollingEnabled="false"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <ProgressBar
+        android:id="@+id/rProgressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"/>
 
 
 

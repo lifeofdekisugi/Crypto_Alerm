@@ -6,10 +6,13 @@
         <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/Crypto_Alerm/app/src/main/res/drawable/roundedbutton.xml" value="0.182" />
         <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/Crypto_Alerm/app/src/main/res/layout/activity_home.xml" value="0.20729166666666668" />
         <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/Crypto_Alerm/app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/Crypto_Alerm/app/src/main/res/layout/activity_token_details.xml" value="0.20729166666666668" />
         <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/Crypto_Alerm/app/src/main/res/layout/fragment_add_new_alerm.xml" value="0.20729166666666668" />
         <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/Crypto_Alerm/app/src/main/res/layout/fragment_dashboard.xml" value="0.20729166666666668" />
         <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/Crypto_Alerm/app/src/main/res/layout/fragment_previous_alerms.xml" value="0.20729166666666668" />
         <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/Crypto_Alerm/app/src/main/res/layout/fragment_profile.xml" value="0.20729166666666668" />
+        <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/Crypto_Alerm/app/src/main/res/layout/fragment_token_details.xml" value="0.25" />
+        <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/Crypto_Alerm/app/src/main/res/layout/loading_dialog.xml" value="0.20729166666666668" />
         <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/Crypto_Alerm/app/src/main/res/layout/splash_screen.xml" value="0.19444444444444445" />
         <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/Crypto_Alerm/app/src/main/res/layout/token_price_item.xml" value="0.20729166666666668" />
         <entry key="..\:/Users/Jim/OneDrive/Documents/AndroidStudioProjects/Crypto_Alerm/app/src/main/res/layout/token_price_recycler_item.xml" value="0.2041025641025641" />

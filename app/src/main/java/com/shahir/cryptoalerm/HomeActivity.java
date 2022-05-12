@@ -2,6 +2,7 @@ package com.shahir.cryptoalerm;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.shahir.cryptoalerm.MainFragments.Dashboard.ScrollHandler;
 import com.shahir.cryptoalerm.MainFragments.FragmentAddNewAlerm;
 import com.shahir.cryptoalerm.MainFragments.Dashboard.FragmentDashboard;
 import com.shahir.cryptoalerm.MainFragments.FragmentPreviousAlerms;
@@ -26,6 +28,9 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer, new FragmentDashboard()).commit();
+
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams)bottomNavigationView.getLayoutParams();
+        layoutParams.setBehavior(new ScrollHandler());
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override

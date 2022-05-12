@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -24,6 +25,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.shahir.cryptoalerm.LoadingDialog;
 import com.shahir.cryptoalerm.databinding.FragmentDashboardBinding;
 
 import org.json.JSONArray;
@@ -42,6 +44,8 @@ public class FragmentDashboard extends Fragment {
     private RecyclerView.Adapter tokenPriceAdapter;
     LinearLayoutManager manager;
     private SwipeRefreshLayout swipeRefreshLayout;
+    LoadingDialog loadingDialog;
+    ProgressBar progressBar;
 
     Boolean isScrolling = false;
     int currentItems, totalItems, scrolledOutItems;
@@ -60,7 +64,8 @@ public class FragmentDashboard extends Fragment {
         // Inflate the layout for this fragment
         //View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
-
+        loadingDialog = new LoadingDialog(mContext);
+        loadingDialog.show();
 
         getCoinData();
 
@@ -96,8 +101,10 @@ public class FragmentDashboard extends Fragment {
                 totalItems = manager.getItemCount();
                 scrolledOutItems = manager.findFirstVisibleItemPosition();
 
+
                 if (currentItems + scrolledOutItems == totalItems){
                     isScrolling = false;
+
                     loadMoreData();
                 }
             }
@@ -107,6 +114,8 @@ public class FragmentDashboard extends Fragment {
     }
 
     private void loadMoreData() {
+
+        binding.rProgressbar.setVisibility(View.VISIBLE);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -118,6 +127,8 @@ public class FragmentDashboard extends Fragment {
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new com.android.volley.Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+
+                        binding.rProgressbar.setVisibility(View.GONE);
 
                         Log.d(TAG, "onResponse: @@@@@@@@@@          Full Response : "  + response);
 
@@ -162,7 +173,7 @@ public class FragmentDashboard extends Fragment {
 
                 queue.add(jsonObjectRequest);
             }
-        }, 3500);
+        }, 5000);
     }
 
     public void getCoinData(){
@@ -175,6 +186,7 @@ public class FragmentDashboard extends Fragment {
             public void onResponse(JSONObject response) {
 
                 Log.d(TAG, "onResponse: @@@@@@@@@@          Full Response : "  + response);
+                loadingDialog.hide();
 
                 tokenPriseItems.clear();
 
